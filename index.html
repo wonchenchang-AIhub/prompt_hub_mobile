@@ -19,21 +19,24 @@
 
   <!-- Header -->
   <header class="app-header">
-    <div class="app-header-inner">
-      <div class="app-logo">
-        <span class="app-logo-icon">◈</span>
-        <span class="app-logo-text">提示詞庫</span>
-      </div>
-      <button class="search-trigger" id="searchTrigger" aria-label="搜尋">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
+    <!-- Hero 標題區 -->
+    <div class="app-hero">
+      <p class="app-hero-eyebrow">PROMPT HUB · 張萬權 | wonchen.chang@gmail.com</p>
+      <h1 class="app-hero-title">AI 提示詞分享與應用學習平台</h1>
+      <p class="app-hero-sub">AI 提示詞<span class="app-hero-accent">模組庫</span></p>
+      <p class="app-hero-quote">「AI 給你什麼，取決於你怎麼問它。」— Nathan Hunter</p>
     </div>
-    <div class="search-overlay" id="searchOverlay">
-      <div class="search-bar-wrap">
-        <svg class="search-bar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="搜尋提示詞…" autocomplete="off" autocorrect="off" spellcheck="false">
-        <button class="search-clear" id="searchClear">✕</button>
+    <!-- 搜尋列 -->
+    <div class="app-search-bar-row">
+      <div class="app-search-inner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="搜尋提示詞名稱、說明或內容…" autocomplete="off" autocorrect="off" spellcheck="false">
+        <button class="search-clear" id="searchClear" style="display:none;">✕</button>
       </div>
+    </div>
+    <!-- 保留 search overlay（用不到但保留 id 以防 JS 引用）-->
+    <div class="search-overlay" id="searchOverlay" style="display:none;">
+      <div class="search-bar-wrap"></div>
     </div>
   </header>
 

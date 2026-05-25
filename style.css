@@ -483,6 +483,88 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .cat-learning { --card-accent: #be123c; }
 .cat-creative { --card-accent: #6d28d9; }
 
+
+/* ── App Hero ────────────────────────────────────────────────── */
+.app-header {
+  flex-shrink: 0;
+  background: #111827;
+  position: relative;
+  z-index: 50;
+  border-bottom: none;
+}
+.app-hero {
+  padding: 20px 18px 12px;
+}
+.app-hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin-bottom: 8px;
+}
+.app-hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #f9fafb;
+  line-height: 1.2;
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+.app-hero-accent {
+  color: #818cf8;
+}
+.app-hero-sub {
+  font-size: 12px;
+  color: #d1d5db;
+  margin-bottom: 4px;
+}
+.app-hero-quote {
+  font-size: 11px;
+  color: #6b7280;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+/* 搜尋列 */
+.app-search-bar-row {
+  padding: 8px 12px 12px;
+  background: #111827;
+}
+.app-search-inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #1f2937;
+  border: 1.5px solid #374151;
+  border-radius: 12px;
+  padding: 0 12px;
+  height: 40px;
+}
+.app-search-inner svg { color: #6b7280; flex-shrink: 0; }
+.app-search-inner .search-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: #f9fafb;
+}
+.app-search-inner .search-input::placeholder { color: #6b7280; }
+.app-search-inner .search-clear { color: #6b7280; font-size: 13px; }
+/* 隱藏舊的 search-overlay */
+.search-overlay { display: none !important; }
+/* Cat tabs 深色配合 */
+.cat-tabs-wrap {
+  background: #1f2937;
+  border-bottom: 1px solid #374151;
+}
+.cat-tab { color: #9ca3af; }
+.cat-tab.active { background: #818cf8; color: #fff; }
+.cat-tab:not(.active) .cat-tab-count { background: #374151; color: #6b7280; }
+
 @media (min-width:600px) {
   body { display:flex; justify-content:center; background:#e8eaf0; }
   #app {

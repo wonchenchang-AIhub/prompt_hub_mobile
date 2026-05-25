@@ -463,10 +463,8 @@ var searchOverlay = document.getElementById('searchOverlay');
 var searchInput   = document.getElementById('searchInput');
 var searchClear   = document.getElementById('searchClear');
 
-document.getElementById('searchTrigger').addEventListener('click', function() {
-  searchOverlay.classList.add('open');
-  setTimeout(function() { searchInput.focus(); }, 80);
-});
+// searchTrigger removed (search bar is now always visible in hero)
+
 searchInput.addEventListener('input', function(e) {
   searchQuery = e.target.value;
   searchClear.classList.toggle('show', !!searchQuery);
