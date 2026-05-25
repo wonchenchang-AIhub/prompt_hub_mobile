@@ -558,14 +558,16 @@ function emptyHtml(icon, msg) {
 /* ── Colour helpers ──────────────────────────────────────── */
 function catColor(cat) {
   var map = { preset:'#7c3aed', decision:'#2563eb', proposal:'#0891b2', comms:'#db2777',
-    writing:'#059669', 'ai-roles':'#ea580c', coach:'#be123c', life:'#b45309',
-    routine:'#0f766e', research:'#7e22ce', tools:'#0369a1' };
+    writing:'#059669', ai_roles:'#ea580c', coach:'#be123c', life:'#b45309',
+    routine:'#0f766e', research:'#7e22ce', tools:'#0369a1',
+    industry:'#0284c7', sales:'#15803d', learning:'#be123c', creative:'#6d28d9' };
   return map[cat] || '#2563eb';
 }
 function catLt(cat) {
   var map = { preset:'#f5f3ff', decision:'#eff6ff', proposal:'#ecfeff', comms:'#fdf2f8',
-    writing:'#ecfdf5', 'ai-roles':'#fff7ed', coach:'#fff1f2', life:'#fffbeb',
-    routine:'#f0fdfa', research:'#faf5ff', tools:'#f0f9ff' };
+    writing:'#ecfdf5', ai_roles:'#fff7ed', coach:'#fff1f2', life:'#fffbeb',
+    routine:'#f0fdfa', research:'#faf5ff', tools:'#f0f9ff',
+    industry:'#f0f9ff', sales:'#f0fdf4', learning:'#fff1f2', creative:'#f5f3ff' };
   return map[cat] || '#eff6ff';
 }
 
