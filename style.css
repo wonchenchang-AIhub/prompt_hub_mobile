@@ -32,7 +32,6 @@
   --cat-routine: #0f766e;
   --cat-research:#7e22ce;
   --cat-tools:   #0369a1;
-  --cat-presentation:#c2410c;
 
   --header-h:  56px;
   --tabs-h:    44px;
@@ -482,8 +481,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .cat-industry { --card-accent: #0284c7; }
 .cat-sales    { --card-accent: #15803d; }
 .cat-learning { --card-accent: #be123c; }
-.cat-creative     { --card-accent: #6d28d9; }
-.cat-presentation { --card-accent: #c2410c; }
+.cat-creative { --card-accent: #6d28d9; }
 
 
 /* ── App Hero ────────────────────────────────────────────────── */
