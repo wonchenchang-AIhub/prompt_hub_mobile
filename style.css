@@ -484,87 +484,6 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .cat-creative { --card-accent: #6d28d9; }
 
 
-/* ── App Hero ────────────────────────────────────────────────── */
-.app-header {
-  flex-shrink: 0;
-  background: #111827;
-  position: relative;
-  z-index: 50;
-  border-bottom: none;
-}
-.app-hero {
-  padding: 6px 16px 4px;
-}
-.app-hero-eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #9ca3af;
-  margin-bottom: 4px;
-}
-.app-hero-title {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: #f9fafb;
-  line-height: 1.2;
-  margin-bottom: 2px;
-  letter-spacing: -0.01em;
-}
-.app-hero-accent {
-  color: #818cf8;
-}
-.app-hero-sub {
-  font-size: 11px;
-  color: #d1d5db;
-  margin-bottom: 2px;
-}
-.app-hero-quote {
-  font-size: 10px;
-  color: #6b7280;
-  font-style: italic;
-  margin-bottom: 2px;
-}
-/* 搜尋列 */
-.app-search-bar-row {
-  padding: 2px 12px 4px;
-  background: #111827;
-}
-.app-search-inner {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #1f2937;
-  border: 1.5px solid #374151;
-  border-radius: 12px;
-  padding: 0 12px;
-  height: 40px;
-}
-.app-search-inner svg { color: #6b7280; flex-shrink: 0; }
-.app-search-inner .search-input {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  font-size: 14px;
-  color: #f9fafb;
-}
-.app-search-inner .search-input::placeholder { color: #6b7280; }
-.app-search-inner .search-clear { color: #6b7280; font-size: 13px; }
-/* 隱藏舊的 search-overlay */
-.search-overlay { display: none !important; }
-/* Cat tabs 深色配合 */
-.cat-tabs-wrap {
-  background: #1f2937;
-  border-bottom: 1px solid #374151;
-}
-.cat-tab { color: #9ca3af; }
-.cat-tab.active { background: #818cf8; color: #fff; }
-.cat-tab:not(.active) .cat-tab-count { background: #374151; color: #6b7280; }
-
 @media (min-width:600px) {
   body { display:flex; justify-content:center; background:#e8eaf0; }
   #app {
@@ -579,3 +498,78 @@ pre    { font-family:'JetBrains Mono', monospace; }
   .sheet-backdrop { transform:translateX(-50%); }
   .sheet-backdrop.show { transform:translateX(-50%); }
 }
+
+
+/* ════ App Hero — Option B 碳黑 × 電光青金 ══════════════════════════════ */
+.app-header {
+  flex-shrink: 0;
+  background: #0c0f14;
+  position: relative;
+  z-index: 50;
+  border-bottom: none;
+  box-shadow: 0 1px 0 rgba(0,212,170,0.12);
+}
+.app-header::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #00d4aa, #f5c842);
+  z-index: 2;
+}
+.app-hero {
+  padding: 4px 16px 3px 20px;
+  position: relative; z-index: 1;
+}
+.app-hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #3d5050;
+  margin-bottom: 3px;
+}
+.app-hero-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #d4e8e4;
+  line-height: 1.15;
+  margin-bottom: 1px;
+  letter-spacing: -0.01em;
+}
+.app-hero-accent { color: #00d4aa; }
+.app-hero-sub {
+  font-size: 10px;
+  color: #2d6060;
+  margin-bottom: 1px;
+}
+.app-hero-quote {
+  font-size: 9px;
+  color: #2a3a3a;
+  font-style: italic;
+  margin-bottom: 1px;
+}
+.app-search-bar-row {
+  padding: 1px 12px 3px 20px;
+  background: #0c0f14;
+}
+.app-search-inner {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(0,212,170,0.2);
+  border-radius: 10px;
+  height: 36px;
+}
+.app-search-inner svg { color: #2a4040; }
+.app-search-inner .search-input {
+  color: #d4e8e4;
+}
+.app-search-inner .search-input::placeholder { color: #2a4040; }
+.cat-tabs-wrap {
+  background: #080b0f;
+  border-bottom: 1px solid rgba(0,212,170,0.1);
+}
+.cat-tab { color: #2d5050; }
+.cat-tab.active { background: #00d4aa; color: #061a16; }
+.search-overlay { display: none !important; }
