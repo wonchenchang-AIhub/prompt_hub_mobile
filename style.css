@@ -493,7 +493,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   border-bottom: none;
 }
 .app-hero {
-  padding: 20px 18px 12px;
+  padding: 10px 18px 6px;
 }
 .app-hero-eyebrow {
   font-family: 'JetBrains Mono', monospace;
@@ -502,7 +502,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #9ca3af;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .app-hero-title {
   font-family: 'Noto Serif TC', serif;
@@ -510,7 +510,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   font-weight: 700;
   color: #f9fafb;
   line-height: 1.2;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   letter-spacing: -0.01em;
 }
 .app-hero-accent {
@@ -519,17 +519,17 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .app-hero-sub {
   font-size: 12px;
   color: #d1d5db;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .app-hero-quote {
   font-size: 11px;
   color: #6b7280;
   font-style: italic;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 /* 搜尋列 */
 .app-search-bar-row {
-  padding: 8px 12px 12px;
+  padding: 4px 12px 6px;
   background: #111827;
 }
 .app-search-inner {
