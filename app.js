@@ -95,23 +95,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
 
 
-function lsGet(k)    { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch(e) { return null; } }
-function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e) {} }
-
-function getCnt(id) {
-  if (_mobileCounts) return _mobileCounts[id] || 0;
-  var c = lsGet(MOBILE_LS_KEY) || lsGet('cnt') || {};
-  return c[id] || 0;
-}
-function incCnt(id) {
-  var c = _mobileCounts || lsGet(MOBILE_LS_KEY) || {};
-  c[id] = (c[id] || 0) + 1;
-  _mobileCounts = c;
-  lsSet(MOBILE_LS_KEY, c);
-  lsSet('cnt', c);  // 保留舊 key 相容性
-  mPushToBin(c);
-  return c[id];
-}
 function fmt(n)      { return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n); }
 
 function getRecent()   { return lsGet('recent') || []; }
