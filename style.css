@@ -251,7 +251,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-4);
 }
 
-.cases-body { display:none; flex-direction:column; padding:0 10px 10px; gap:6px; }
+.cases-body { display: none; display:none; flex-direction:column; padding:0 10px 10px; gap:6px; }
 .cases-body.open { display:flex; }
 
 /* Case item card */
@@ -570,6 +570,6 @@ pre    { font-family:'JetBrains Mono', monospace; }
   background: #080b0f;
   border-bottom: 1px solid rgba(0,212,170,0.1);
 }
-.cat-tab { color: #2d5050; }
+.cat-tab { color: #8ab4b4; }
 .cat-tab.active { background: #00d4aa; color: #061a16; }
 .search-overlay { display: none !important; }
