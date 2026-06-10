@@ -25,7 +25,7 @@ function storeCase(text) {
 
 /* ── LocalStorage ────────────────────────────────────────── */
 /* ── Copy-count persistence (GitHub Gist + localStorage fallback) ───────── */
-var _GH_TOKEN   = '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';
+var _GH_TOKEN   = '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';
 var _GIST_ID    = '9b698905014cc381f348a36b95e9aab2';
 var _GIST_URL   = 'https://api.github.com/gists/' + _GIST_ID;
 var _LS_KEY     = 'prompt_copy_counts';
@@ -37,6 +37,27 @@ function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch
 
 function getCnt(id) {
   return (_memCounts || lsGet(_LS_KEY) || {})[id] || 0;
+}
+
+
+function refreshAllCountPills() {
+  if (!_memCounts) return;
+  document.querySelectorAll('.prompt-card[data-id]').forEach(function(card) {
+    var id  = parseInt(card.getAttribute('data-id'));
+    var cnt = (_memCounts[id] || 0);
+    var pill = card.querySelector('.copy-count-pill');
+    if (cnt > 0) {
+      if (!pill) {
+        var actions = card.querySelector('.card-actions');
+        if (actions) {
+          pill = document.createElement('span');
+          pill.className = 'copy-count-pill';
+          actions.appendChild(pill);
+        }
+      }
+      if (pill) pill.textContent = '⎘ ' + fmt(cnt);
+    }
+  });
 }
 
 function syncFromGist() {
@@ -58,6 +79,7 @@ function syncFromGist() {
     });
     _memCounts = merged;
     lsSet(_LS_KEY, merged);
+    refreshAllCountPills();
   })
   .catch(function() { _memCounts = lsGet(_LS_KEY) || lsGet('cnt') || {}; });
 }
