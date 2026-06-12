@@ -539,17 +539,11 @@ pre    { font-family:'JetBrains Mono', monospace; }
   margin-bottom: 1px;
   letter-spacing: -0.01em;
 }
-.app-hero-accent { color: #f5c842; font-weight: 700; }
+.app-hero-accent { color: #f5c842; font-weight: 400; }
 .app-hero-sub {
   font-size: 10px;
   color: #f5c842;
-  font-weight: 500;
-  margin-bottom: 1px;
-}
-.app-hero-quote {
-  font-size: 9px;
-  color: #2a3a3a;
-  font-style: italic;
+  font-weight: 400;
   margin-bottom: 1px;
 }
 .app-search-bar-row {
@@ -574,3 +568,12 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .cat-tab { color: #8ab4b4; }
 .cat-tab.active { background: #00d4aa; color: #061a16; }
 .search-overlay { display: none !important; }
+
+.app-hero-quote-above {
+  font-size: 9px;
+  color: #c8d8d8;
+  font-style: italic;
+  padding: 3px 16px 4px 20px;
+  background: #0c0f14;
+  display: block;
+}
