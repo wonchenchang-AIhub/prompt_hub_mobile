@@ -11,6 +11,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+/* 強制 debug 樣式 */
+#app {
+  background: #f2f4f8 !important;
+  padding-top: 0 !important;
+}
+.app-header {
+  background: #0c0f14 !important;
+  max-height: 200px !important;
+  overflow: hidden !important;
+  padding-top: env(safe-area-inset-top, 0px) !important;
+}
+.app-hero, .app-search-bar-row, .app-hero-quote-above {
+  flex-shrink: 0 !important;
+}
+/* 防止任何子元素撐開 header */
+.app-header * {
+  max-height: none;
+}
+</style>
 </head>
 <body>
 
@@ -37,7 +57,7 @@
   <!-- Category Tabs -->
   <div class="cat-tabs-wrap" id="catTabsWrap">
         <div class="cat-tabs" id="catTabs">
-      <button class="cat-tab active" data-cat="all">全部 <span class="cat-tab-count" id="count-all">134</span></button>
+      <button class="cat-tab active" data-cat="all">全部 <span class="cat-tab-count" id="count-all">137</span></button>
       <button class="cat-tab" data-cat="preset">⚙️ AI工具設定</button>
       <button class="cat-tab" data-cat="decision">📊 決策分析</button>
       <button class="cat-tab" data-cat="proposal">📋 企劃提案</button>
