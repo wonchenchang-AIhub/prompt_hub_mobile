@@ -584,11 +584,14 @@ pre    { font-family:'JetBrains Mono', monospace; }
 /* ════ App Hero — Option B 碳黑 × 電光青金 ══════════════════════════════ */
 .app-header {
   flex-shrink: 0;
+  flex: 0 0 auto;
   background: #0c0f14;
   position: relative;
   z-index: 50;
   border-bottom: none;
   box-shadow: 0 1px 0 rgba(0,212,170,0.12);
+  overflow: hidden;
+  max-height: 120px;
 }
 .app-header::before {
   content: '';
@@ -599,7 +602,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   z-index: 2;
 }
 .app-hero {
-  padding: 4px 16px 3px 20px;
+  padding: 6px 16px 4px 16px;
   position: relative; z-index: 1;
 }
 .app-hero-eyebrow {
@@ -609,7 +612,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #94a3b8;
-  margin-bottom: 3px;
+  margin-bottom: 1px;
 }
 .app-hero-title {
   font-family: 'Noto Serif TC', serif;
@@ -628,7 +631,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   margin-bottom: 1px;
 }
 .app-search-bar-row {
-  padding: 1px 12px 3px 20px;
+  padding: 2px 12px 6px 12px;
   background: #0c0f14;
 }
 .app-search-inner {
@@ -654,7 +657,7 @@ pre    { font-family:'JetBrains Mono', monospace; }
   font-size: 9px;
   color: #c8d8d8;
   font-style: italic;
-  padding: 3px 16px 4px 20px;
+  padding: 2px 16px 3px 16px;
   background: #0c0f14;
   display: block;
 }
