@@ -175,6 +175,86 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .view-panel::-webkit-scrollbar { display:none; }
 
 /* ── Prompt Card ─────────────────────────────────────────── */
+
+/* ════ .card（app.js 產生的卡片結構）═════════════════════════════════
+   app.js 產生：.card > .card-top / .card-title / .card-preview /
+                .card-footer / .card-cases
+   與 .prompt-card 設計對齊
+═══════════════════════════════════════════════════════════════════════ */
+.card {
+  flex-shrink: 0;
+  background: var(--surface);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--card-accent, var(--accent));
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  overflow: hidden;
+  animation: fadeUp .25s ease both;
+  padding: 14px 14px 10px;
+}
+.card-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.card-cat {
+  font-size: 11px; font-weight: 600;
+  color: var(--accent); text-transform: uppercase; letter-spacing: .5px;
+}
+.card-arrow { color: var(--text-4); font-size: 14px; }
+.card-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 15px; font-weight: 600;
+  color: var(--text); line-height: 1.4;
+  margin-bottom: 6px;
+}
+.card-preview {
+  font-size: 12.5px; color: var(--text-3);
+  line-height: 1.55; display: -webkit-box;
+  -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; margin-bottom: 10px;
+}
+.card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 8px; border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 6px;
+}
+.card-chars, .card-copies { font-size: 11px; color: var(--text-4); }
+.card-copies-zero { opacity: .5; }
+.card-footer-actions { display: flex; gap: 6px; align-items: center; }
+.card-copy-prompt-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--accent); color: #fff;
+  border-radius: 8px; padding: 5px 12px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: opacity .15s;
+}
+.card-copy-prompt-btn:active { opacity: .75; }
+.card-cases { border-top: 1px solid var(--border); margin-top: 8px; }
+.cases-toggle-btn {
+  display: flex; align-items: center; gap: 6px;
+  width: 100%; padding: 8px 0;
+  color: var(--text-3); font-size: 12px; cursor: pointer;
+  background: none;
+}
+.cases-toggle-icon { font-size: 10px; transition: transform .2s; }
+.cases-toggle-btn.open .cases-toggle-icon { transform: rotate(90deg); }
+
+/* 分類色系 */
+.cat-preset   { --card-accent: #6366f1; }
+.cat-decision { --card-accent: #0ea5e9; }
+.cat-proposal { --card-accent: #10b981; }
+.cat-project  { --card-accent: #f59e0b; }
+.cat-comms    { --card-accent: #ec4899; }
+.cat-writing  { --card-accent: #8b5cf6; }
+.cat-ai_roles { --card-accent: #06b6d4; }
+.cat-industry { --card-accent: #84cc16; }
+.cat-sales    { --card-accent: #f97316; }
+.cat-research { --card-accent: #3b82f6; }
+.cat-routine  { --card-accent: #14b8a6; }
+.cat-learning { --card-accent: #a78bfa; }
+.cat-creative { --card-accent: #fb7185; }
+.cat-life     { --card-accent: #34d399; }
+
 .prompt-card {
   flex-shrink: 0;                /* 絕對不能被壓縮 */
   background: var(--surface);
