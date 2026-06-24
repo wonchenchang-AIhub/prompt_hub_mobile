@@ -71,14 +71,13 @@ pre    { font-family:'JetBrains Mono', monospace; }
 
 /* ── Header ──────────────────────────────────────────────── */
 .app-header {
-  flex: 0 0 var(--header-h);
+  flex: 0 0 auto;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   position: relative;
   z-index: 50;
 }
 .app-header-inner {
-  height: var(--header-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 16px;
 }
@@ -251,8 +250,10 @@ pre    { font-family:'JetBrains Mono', monospace; }
   font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-4);
 }
 
-.cases-body { display: none; display:none; flex-direction:column; padding:0 10px 10px; gap:6px; }
+.cases-body { display:none; flex-direction:column; padding:0 10px 10px; gap:6px; }
 .cases-body.open { display:flex; }
+.cases-list          { display:none; }
+.cases-list.open     { display:block; }
 
 /* Case item card */
 .case-card {
