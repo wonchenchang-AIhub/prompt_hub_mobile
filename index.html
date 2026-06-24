@@ -18,26 +18,20 @@
 <div id="app">
 
   <!-- Header -->
-  <header class="app-header" style="max-height:115px;overflow:hidden;">
-    <!-- Hero 標題區 -->
-    <div class="app-hero">
-      <p class="app-hero-eyebrow">PROMPT HUB · 張萬權 | wonchen.chang@gmail.com</p>
-      <h1 class="app-hero-title">AI 提示詞分享與應用學習平台</h1>
-      <p class="app-hero-sub">AI 提示詞<span class="app-hero-accent">模組庫</span></p>
+  <header class="app-header" style="display:flex;flex-direction:column;flex-shrink:0;">
+    <div style="padding:6px 16px 2px;background:#0c0f14;">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#94a3b8;letter-spacing:.1em;text-transform:uppercase;margin:0 0 2px;">PROMPT HUB &middot; 張萬權 | wonchen.chang@gmail.com</p>
+      <p style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;color:#d4e8e4;margin:0 0 1px;line-height:1.2;">AI 提示詞分享與應用學習平台</p>
+      <p style="font-size:10px;color:#f5c842;margin:0 0 2px;">AI 提示詞模組庫</p>
     </div>
-    <p class="app-hero-quote-above">「AI 給你什麼，取決於你怎麼問它。」— Nathan Hunter</p>
-    <!-- 搜尋列 -->
-    <div class="app-search-bar-row">
+    <div style="padding:2px 12px 5px;background:#0c0f14;">
       <div class="app-search-inner">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input type="text" id="searchInput" class="search-input" placeholder="搜尋提示詞名稱、說明或內容…" autocomplete="off" autocorrect="off" spellcheck="false">
-        <button class="search-clear" id="searchClear" style="display:none;">✕</button>
+        <button class="search-clear" id="searchClear" style="display:none;">&#x2715;</button>
       </div>
     </div>
-    <!-- 保留 search overlay（用不到但保留 id 以防 JS 引用）-->
-    <div class="search-overlay" id="searchOverlay" style="display:none;">
-      <div class="search-bar-wrap"></div>
-    </div>
+    <div id="searchOverlay" style="display:none;"><div class="search-bar-wrap"></div></div>
   </header>
 
   <!-- Category Tabs -->
