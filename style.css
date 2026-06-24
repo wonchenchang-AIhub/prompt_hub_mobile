@@ -62,11 +62,10 @@ pre    { font-family:'JetBrains Mono', monospace; }
 #app {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  padding-top: var(--safe-top);
   display: flex;
   flex-direction: column;
-  overflow: hidden;        /* #app 本身不捲動 */
-  background: var(--bg);
+  overflow: hidden;
+  background: #080b0f;
 }
 
 /* ── Header ──────────────────────────────────────────────── */
@@ -583,15 +582,13 @@ pre    { font-family:'JetBrains Mono', monospace; }
 
 /* ════ App Hero — Option B 碳黑 × 電光青金 ══════════════════════════════ */
 .app-header {
-  flex-shrink: 0;
   flex: 0 0 auto;
   background: #0c0f14;
   position: relative;
   z-index: 50;
   border-bottom: none;
   box-shadow: 0 1px 0 rgba(0,212,170,0.12);
-  overflow: hidden;
-  max-height: 120px;
+  padding-top: env(safe-area-inset-top, 0px);
 }
 .app-header::before {
   content: '';
