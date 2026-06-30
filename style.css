@@ -206,11 +206,27 @@ pre    { font-family:'JetBrains Mono', monospace; }
   color: var(--text); line-height: 1.4;
   margin-bottom: 6px;
 }
+.card-scene {
+  font-size: 11.5px; color: var(--accent);
+  line-height: 1.45; margin-bottom: 6px;
+  display: flex; align-items: flex-start; gap: 5px;
+}
+.card-scene-icon { flex-shrink: 0; opacity: .85; }
+.card-scene-text {
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden;
+}
 .card-preview {
   font-size: 12.5px; color: var(--text-3);
   line-height: 1.55; display: -webkit-box;
   -webkit-line-clamp: 2; -webkit-box-orient: vertical;
   overflow: hidden; margin-bottom: 10px;
+}
+.sheet-scene {
+  font-size: 13px; color: var(--accent);
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 14px;
+  margin-bottom: 12px; line-height: 1.6;
 }
 .card-footer {
   display: flex; align-items: center; justify-content: space-between;
@@ -253,6 +269,8 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .cat-learning { --card-accent: #a78bfa; }
 .cat-creative { --card-accent: #fb7185; }
 .cat-life     { --card-accent: #34d399; }
+.cat-pptx     { --card-accent: #fb923c; }
+.cat-patent   { --card-accent: #6366f1; }
 
 .prompt-card {
   flex-shrink: 0;                /* 絕對不能被壓縮 */
