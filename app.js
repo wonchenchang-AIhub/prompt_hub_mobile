@@ -257,18 +257,18 @@ function openModal(id) {
   if (!p) return;
   const cat = catInfo(p.cat);
 
-  const catTag = document.getElementById('sheetCat');
+  const catTag = document.getElementById('modalCat');
   catTag.textContent = `${cat.icon} ${cat.label}`;
   catTag.className   = `modal-cat-tag ${cat.class}`;
-  document.getElementById('sheetTitle').textContent = p.title;
-  document.getElementById('sheetContent').textContent = p.content;
+  document.getElementById('modalTitle').textContent = p.title;
+  document.getElementById('modalContent').textContent = p.content;
 
   const cnt = getCount(id);
-  document.getElementById('copyCountBadge').textContent = cnt > 0 ? `已複製 ${cnt} 次` : '';
+  document.getElementById('modalCopyCount').textContent = cnt > 0 ? `已複製 ${cnt} 次` : '';
 
   const cases       = getCases(id);
-  const casesPanelEl = document.getElementById('sheetCases');
-  const casesListEl  = document. getElementById('sheetCases');
+  const casesPanelEl = document.getElementById('modalCases');
+  const casesListEl  = document.getElementById('modalCasesList');
 
   if (cases.length) {
     casesPanelEl.style.display = 'block';
@@ -315,30 +315,30 @@ function openModal(id) {
     casesListEl.innerHTML = '';
   }
 
-  const overlay = document.getElementById('detailSheet');
+  const overlay = document.getElementById('modalOverlay');
   overlay.classList.add('open');
   overlay.dataset.promptId = id;
   document.body.style.overflow = 'hidden';
-  document.getElementById('copyCountBadge').classList.remove('show');
+  document.getElementById('copyConfirm').classList.remove('show');
 }
 
 /* Modal：複製提示詞（藍）*/
-document.getElementById('copyMainBtn').addEventListener('click', () => {
-  const id = parseInt(document.getElementById('detailSheet').dataset.promptId);
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const id = parseInt(document.getElementById('modalOverlay').dataset.promptId);
   const p  = PROMPTS.find(x => x.id === id);
   if (!p) return;
   navigator.clipboard.writeText(p.content).then(() => {
     const newCnt = incrementCount(id);
     logCopyToGoogleForm(p);
-    const btn = document.getElementById('copyMainBtn');
+    const btn = document.getElementById('copyBtn');
     btn.classList.add('copied-prompt');
     btn.innerHTML = '<span class="copy-icon">✓</span> 已複製！';
     setTimeout(() => { btn.classList.remove('copied-prompt'); btn.innerHTML = '<span class="copy-icon">⎘</span> 複製提示詞'; }, 2200);
-    const confirm = document.getElementById('copyCountBadge');
+    const confirm = document.getElementById('copyConfirm');
     confirm.textContent = `第 ${newCnt} 次複製`;
     confirm.classList.add('show');
     setTimeout(() => confirm.classList.remove('show'), 2400);
-    document.getElementById('copyCountBadge').textContent = `已複製 ${newCnt} 次`;
+    document.getElementById('modalCopyCount').textContent = `已複製 ${newCnt} 次`;
     const card = document.querySelector(`.card[data-id="${id}"]`);
     if (card) {
       const b = card.querySelector('.card-copies');
@@ -358,20 +358,20 @@ function modalCopyCase(btn, idx) {
 
 /* ── Close modal ────────────────────────────────────────────────────────── */
 function closeModal() {
-  document.getElementById('detailSheet').classList.remove('open');
+  document.getElementById('modalOverlay').classList.remove('open');
   document.body.style.overflow = '';
 }
-document.getElementById('sheetBack').addEventListener('click', closeModal);
-document.getElementById('detailSheet').addEventListener('click', e => {
-  if (e.target === document.getElementById('detailSheet')) closeModal();
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modalOverlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 /* ── Category nav ───────────────────────────────────────────────────────── */
-document.getElementById('catTabs').addEventListener('click', e => {
-  const btn = e.target.closest('.cat-tab');
+document.getElementById('catNav').addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
   if (!btn) return;
-  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   currentCat = btn.dataset.cat;
   renderCards();
