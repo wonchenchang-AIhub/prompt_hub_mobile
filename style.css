@@ -236,6 +236,15 @@ pre    { font-family:'JetBrains Mono', monospace; }
 .card-chars, .card-copies { font-size: 11px; color: var(--text-4); }
 .card-copies-zero { opacity: .5; }
 .card-footer-actions { display: flex; gap: 6px; align-items: center; }
+.card-preview-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: var(--accent); background: transparent;
+  border: 1px solid var(--border-md);
+  border-radius: 8px; padding: 5px 10px;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  transition: background .15s;
+}
+.card-preview-btn:active { background: var(--accent-lt); }
 .card-copy-prompt-btn {
   display: inline-flex; align-items: center; gap: 4px;
   background: var(--accent); color: #fff;
