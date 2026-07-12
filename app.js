@@ -330,6 +330,7 @@ function openModal(id) {
     casesListEl.innerHTML = '';
   }
 
+  document.getElementById('sheetBody').scrollTop = 0;
   const overlay = document.getElementById('detailSheet');
   overlay.classList.add('open');
   overlay.dataset.promptId = id;
