@@ -1,147 +1,248 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="提示詞庫">
-<meta name="theme-color" content="#f2f4f8">
-<title>AI Prompt Hub · 手機版</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Hub 已搬遷 · AI Hub Works</title>
+<meta name="description" content="Prompt Hub 已升級搬遷至 AI Hub Works，請前往新網站。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-/* 強制 debug 樣式 */
-#app {
-  background: #f2f4f8 !important;
-  padding-top: 0 !important;
-}
-.app-header {
-  background: #0c0f14 !important;
-  max-height: 200px !important;
-  overflow: hidden !important;
-  padding-top: env(safe-area-inset-top, 0px) !important;
-}
-.app-hero, .app-search-bar-row, .app-hero-quote-above {
-  flex-shrink: 0 !important;
-}
-/* 防止任何子元素撐開 header */
-.app-header * {
-  max-height: none;
-}
+  :root{
+    --ink:        #0b201e;
+    --ink-2:      #123734;
+    --paper:      #f4efe4;
+    --gold:       #c9a24b;
+    --gold-soft:  #e4cd8f;
+    --teal-line:  rgba(228,205,143,0.16);
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    font-family:'Noto Sans TC', sans-serif;
+    background:
+      radial-gradient(1100px 700px at 15% -10%, #163e3a 0%, transparent 60%),
+      radial-gradient(900px 600px at 110% 10%, #0f2e2b 0%, transparent 55%),
+      linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 55%, #0d2e2b 100%);
+    color: var(--paper);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* subtle grain */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* faint concentric rings, echoes a compass / "moved location" motif */
+  .rings{
+    position:fixed; top:50%; left:50%;
+    width:1400px; height:1400px;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:
+      repeating-radial-gradient(circle,
+        transparent 0, transparent 78px,
+        var(--teal-line) 79px, var(--teal-line) 80px);
+    opacity:.6;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .stage{
+    position:relative; z-index:1;
+    max-width:640px;
+    width:100%;
+    text-align:center;
+  }
+
+  .kicker{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:11.5px; letter-spacing:.28em; font-weight:500;
+    text-transform:uppercase;
+    color: var(--gold-soft);
+    opacity:0;
+    animation: rise .8s .05s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .kicker::before, .kicker::after{
+    content:""; width:26px; height:1px; background: var(--gold-soft); opacity:.55;
+  }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-optical-sizing:auto;
+    font-size: clamp(38px, 6.5vw, 64px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin:22px 0 6px;
+    opacity:0;
+    animation: rise .9s .18s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:300;
+    color: var(--gold-soft);
+  }
+
+  .sub{
+    font-size:15.5px;
+    line-height:1.8;
+    color: rgba(244,239,228,0.72);
+    max-width:480px;
+    margin:0 auto;
+    opacity:0;
+    animation: rise .9s .32s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .sub b{ color: var(--paper); font-weight:500; }
+
+  .divider{
+    width:56px; height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin:34px auto;
+    opacity:0;
+    animation: rise .8s .44s cubic-bezier(.16,1,.3,1) forwards;
+  }
+
+  .features{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px 12px;
+    margin-bottom:38px;
+    opacity:0;
+    animation: rise .9s .5s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .features span{
+    font-size:12.5px;
+    padding:7px 14px;
+    border:1px solid var(--teal-line);
+    border-radius:100px;
+    color: rgba(244,239,228,0.82);
+    background: rgba(228,205,143,0.04);
+    letter-spacing:.02em;
+    white-space:nowrap;
+  }
+
+  .cta{
+    opacity:0;
+    animation: rise .9s .62s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .btn{
+    position:relative;
+    display:inline-flex; align-items:center; gap:12px;
+    font-family:'Noto Sans TC', sans-serif;
+    font-size:16px; font-weight:700;
+    letter-spacing:.02em;
+    color: var(--ink);
+    background: linear-gradient(180deg, #e9d59e, var(--gold));
+    padding:17px 34px;
+    border-radius:100px;
+    text-decoration:none;
+    box-shadow: 0 1px 0 rgba(255,255,255,.35) inset, 0 14px 34px -12px rgba(201,162,75,0.55);
+    transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+  }
+  .btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 20px 40px -12px rgba(201,162,75,0.7);
+  }
+  .btn:active{ transform: translateY(0); }
+  .btn svg{ transition: transform .35s cubic-bezier(.16,1,.3,1); }
+  .btn:hover svg{ transform: translateX(4px); }
+
+  .url-line{
+    margin-top:16px;
+    font-size:12.5px;
+    color: rgba(244,239,228,0.42);
+    letter-spacing:.02em;
+    opacity:0;
+    animation: rise .9s .72s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .url-line code{
+    font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    color: rgba(228,205,143,0.75);
+  }
+
+  .redirect-note{
+    margin-top:46px;
+    font-size:11.5px;
+    color: rgba(244,239,228,0.34);
+    letter-spacing:.03em;
+    opacity:0;
+    animation: rise .9s .84s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  .redirect-note b{ color: rgba(228,205,143,0.7); font-weight:500; }
+
+  @keyframes rise{
+    from{ opacity:0; transform: translateY(14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  @media (max-width:480px){
+    .features{ gap:8px; }
+    .features span{ font-size:11.5px; padding:6px 12px; }
+    .btn{ padding:15px 26px; font-size:15px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ══ App Shell ═══════════════════════════════════════════ -->
-<div id="app">
+  <div class="rings" aria-hidden="true"></div>
 
-  <!-- Header -->
-  <header class="app-header" style="display:flex;flex-direction:column;flex-shrink:0;">
-    <div style="padding:6px 16px 2px;background:#0c0f14;">
-      <p style="font-family:'JetBrains Mono',monospace;font-size:9px;color:#94a3b8;letter-spacing:.1em;text-transform:uppercase;margin:0 0 2px;">PROMPT HUB &middot; 張萬權 | wonchen.chang@gmail.com</p>
-      <p style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;color:#d4e8e4;margin:0 0 1px;line-height:1.2;">AI 提示詞分享與應用學習平台</p>
-      <p style="font-size:10px;color:#f5c842;margin:0 0 2px;">AI 提示詞模組庫</p>
+  <main class="stage">
+    <span class="kicker">Prompt&nbsp;Hub&nbsp;·&nbsp;公告</span>
+
+    <h1>我們搬新家了，<br><em>來看看新版本</em></h1>
+
+    <p class="sub">
+      這裡是 <b>Prompt Hub</b> 舊版網站。內容已經全面升級，搬遷到全新的
+      <b>AI Hub Works</b>，涵蓋教學簡報、提示詞探索、工具選讀與實作筆記，
+      四大區塊助你把 AI 用進真實工作。
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="features">
+      <span>📊 AI 教學簡報</span>
+      <span>🔍 提示詞探索區</span>
+      <span>🧰 AI 工具選讀</span>
+      <span>📝 AI 實作筆記</span>
     </div>
-    <div style="padding:2px 12px 5px;background:#0c0f14;">
-      <div class="app-search-inner">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input type="text" id="searchInput" class="search-input" placeholder="搜尋提示詞名稱、說明或內容…" autocomplete="off" autocorrect="off" spellcheck="false">
-        <button class="search-clear" id="searchClear" style="display:none;">&#x2715;</button>
-      </div>
+
+    <div class="cta">
+      <a class="btn" href="https://wonchenchang-aihub.github.io/AIHub-works/index.html">
+        前往 AI Hub Works
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>
+        </svg>
+      </a>
     </div>
-    <div id="searchOverlay" style="display:none;"><div class="search-bar-wrap"></div></div>
-  </header>
 
-  <!-- Category Tabs -->
-  <div class="cat-tabs-wrap" id="catTabsWrap">
-        <div class="cat-tabs" id="catTabs">
-      <button class="cat-tab active" data-cat="all">全部 <span class="cat-tab-count" id="count-all">147</span></button>
-      <button class="cat-tab" data-cat="preset">⚙️ AI工具設定</button>
-      <button class="cat-tab" data-cat="decision">📊 決策分析</button>
-      <button class="cat-tab" data-cat="proposal">📋 企劃提案</button>
-      <button class="cat-tab" data-cat="project">🗂️ 計畫書與報告</button>
-      <button class="cat-tab" data-cat="creative">🎨 簡報與視覺</button>
-      <button class="cat-tab" data-cat="patent">⚖️ 專利分析</button>
-      <button class="cat-tab" data-cat="writing">✍️ 文稿優化</button>
-      <button class="cat-tab" data-cat="ai_roles">🧠 策略智囊</button>
-      <button class="cat-tab" data-cat="comms">💼 職場溝通</button>
-      <button class="cat-tab" data-cat="industry">📈 產業分析</button>
-      <button class="cat-tab" data-cat="research">🔬 研究分析</button>
-      <button class="cat-tab" data-cat="sales">💰 行銷銷售</button>
-      <button class="cat-tab" data-cat="routine">📅 日常效率</button>
-      <button class="cat-tab" data-cat="learning">🎓 學習成長</button>
-      <button class="cat-tab" data-cat="life">✨ 生活娛樂</button>
-    </div>
-  </div>
+    <p class="url-line">原本的提示詞內容，現在收錄在新網站的「<b style="color:var(--gold-soft)">提示詞探索區</b>」</p>
+    <p class="url-line">新網址：<code>wonchenchang-aihub.github.io/AIHub-works</code></p>
 
-  <!-- 主內容區（首頁卡片 / 最近 / 收藏 共用同一個容器） -->
-  <div class="content-area" id="contentArea">
-    <!-- 首頁卡片清單 -->
-    <div class="card-list" id="cardGrid"></div>
-    <!-- 最近使用（動態插入） -->
-    <div class="view-panel" id="recentPanel"></div>
-    <!-- 收藏（動態插入） -->
-    <div class="view-panel" id="favPanel"></div>
-  </div>
+    <p class="redirect-note"><b id="count">8</b> 秒後自動為您跳轉，或直接點擊上方按鈕</p>
+  </main>
 
-  <!-- Bottom Tab Bar -->
-  <nav class="tab-bar">
-    <button class="tab-bar-btn active" data-view="home" onclick="switchView('home',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      <span>首頁</span>
-    </button>
-    <button class="tab-bar-btn" data-view="recent" onclick="switchView('recent',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      <span>最近使用</span>
-    </button>
-    <button class="tab-bar-btn" data-view="fav" onclick="switchView('fav',this)">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      <span>收藏</span>
-    </button>
-  </nav>
+  <script>
+    var seconds = 8;
+    var el = document.getElementById('count');
+    var timer = setInterval(function () {
+      seconds -= 1;
+      if (el) el.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = "https://wonchenchang-aihub.github.io/AIHub-works/index.html";
+      }
+    }, 1000);
+  </script>
 
-</div><!-- /#app -->
-
-<!-- ══ Detail Sheet ════════════════════════════════════════ -->
-<div class="sheet-backdrop" id="sheetBackdrop"></div>
-<div class="detail-sheet" id="detailSheet">
-  <div class="sheet-handle-area" id="sheetHandleArea">
-    <div class="sheet-handle"></div>
-  </div>
-  <div class="sheet-header">
-    <button class="sheet-back" id="sheetBack">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <div class="sheet-title-wrap">
-      <span class="sheet-cat-tag" id="sheetCat"></span>
-      <h2 class="sheet-title" id="sheetTitle"></h2>
-    </div>
-    <button class="sheet-fav-btn" id="sheetFav">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-    </button>
-  </div>
-  <div class="sheet-body" id="sheetBody">
-    <div class="sheet-scene" id="sheetScene" style="display:none;"></div>
-    <div class="prompt-block">
-      <div class="prompt-label">完整提示詞</div>
-      <pre class="prompt-text" id="sheetContent"></pre>
-    </div>
-    <div class="cases-section" id="sheetCases"></div>
-  </div>
-  <div class="sheet-footer">
-    <button class="copy-main-btn" id="copyMainBtn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-      複製提示詞
-    </button>
-    <span class="copy-count-badge" id="copyCountBadge"></span>
-    <span class="copy-toast" id="copyToast"></span>
-  </div>
-</div>
-
-<script src="data.js"></script>
-<script src="cases.js"></script>
-<script src="app.js"></script>
 </body>
 </html>
